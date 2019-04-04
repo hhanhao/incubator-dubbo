@@ -24,7 +24,7 @@
     <!-- provider's application name, used for tracing dependency relationship -->
     <dubbo:application name="demo-provider"/>
 
-    <dubbo:registry address="multicast://224.5.6.7:1234" />
+    <dubbo:registry protocol="zookeeper" address="172.16.6.35:2181" />
 
     <!-- use dubbo protocol to export service on port 20880 -->
     <dubbo:protocol name="dubbo"/>
@@ -34,5 +34,11 @@
 
     <!-- declare the service interface to be exported -->
     <dubbo:service interface="org.apache.dubbo.demo.DemoService" ref="demoService"/>
+
+    <!-- service implementation, as same as regular local bean -->
+    <bean id="demoService2" class="org.apache.dubbo.demo.provider.DemoServiceImpl2"/>
+
+    <!-- declare the service interface to be exported -->
+    <dubbo:service interface="org.apache.dubbo.demo.DemoService" ref="demoService2"/>
 
 </beans>
