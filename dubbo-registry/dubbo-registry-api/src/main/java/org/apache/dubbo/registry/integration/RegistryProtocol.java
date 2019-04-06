@@ -156,7 +156,7 @@ public class RegistryProtocol implements Protocol {
     }
 
     public void register(URL registryUrl, URL registeredProviderUrl) {
-        Registry registry = registryFactory.getRegistry(registryUrl);
+        Registry registry = registryFactory.getRegistry(registryUrl);//content by hanhao FailBackRegistry
         registry.register(registeredProviderUrl);
     }
 
@@ -167,6 +167,7 @@ public class RegistryProtocol implements Protocol {
 
     @Override
     public <T> Exporter<T> export(final Invoker<T> originInvoker) throws RpcException {
+        /**content by hanhao 服务导出、服务注册、订阅信息*/
         URL registryUrl = getRegistryUrl(originInvoker);
         // url to export locally
         URL providerUrl = getProviderUrl(originInvoker);
@@ -181,7 +182,7 @@ public class RegistryProtocol implements Protocol {
 
         providerUrl = overrideUrlWithConfig(providerUrl, overrideSubscribeListener);
         //export invoker
-        final ExporterChangeableWrapper<T> exporter = doLocalExport(originInvoker, providerUrl);
+        final ExporterChangeableWrapper<T> exporter = doLocalExport(originInvoker, providerUrl);// content by hanhao 服务导出
 
         // url to registry
         final Registry registry = getRegistry(originInvoker);
@@ -191,7 +192,7 @@ public class RegistryProtocol implements Protocol {
         //to judge if we need to delay publish
         boolean register = registeredProviderUrl.getParameter("register", true);
         if (register) {
-            register(registryUrl, registeredProviderUrl);
+            register(registryUrl, registeredProviderUrl);//content by haohao 服务注册到注册中心
             providerInvokerWrapper.setReg(true);
         }
 

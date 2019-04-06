@@ -40,7 +40,7 @@ public final class DubboCountCodec implements Codec2 {
 
     @Override
     public Object decode(Channel channel, ChannelBuffer buffer) throws IOException {
-        int save = buffer.readerIndex();
+        int save = buffer.readerIndex();// content by hanhao  消息长度不够时，重置读索引
         MultiMessage result = MultiMessage.create();
         do {
             Object obj = codec.decode(channel, buffer);

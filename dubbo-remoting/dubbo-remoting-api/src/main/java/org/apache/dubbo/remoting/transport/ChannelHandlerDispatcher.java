@@ -38,7 +38,7 @@ public class ChannelHandlerDispatcher implements ChannelHandler {
     public ChannelHandlerDispatcher() {
     }
 
-    public ChannelHandlerDispatcher(ChannelHandler... handlers) {
+    public ChannelHandlerDispatcher(ChannelHandler... handlers) {//content by hanhao new DecodeHandler(new HeaderExchangeHandler(ExchangeHandlerAdapter)) ExchangeHandlerAdapter DubboProtocol内部匿名类
         this(handlers == null ? null : Arrays.asList(handlers));
     }
 

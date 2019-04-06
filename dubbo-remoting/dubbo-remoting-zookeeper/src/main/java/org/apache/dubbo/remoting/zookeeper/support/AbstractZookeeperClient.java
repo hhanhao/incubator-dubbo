@@ -61,7 +61,7 @@ public abstract class AbstractZookeeperClient<TargetDataListener, TargetChildLis
                 return;
             }
         }
-        int i = path.lastIndexOf('/');
+        int i = path.lastIndexOf('/');//content by hanhao 递归创建上一级目录
         if (i > 0) {
             create(path.substring(0, i), false);
         }
